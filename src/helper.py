@@ -230,9 +230,11 @@ def print_outputs(city, data_dict, arguments, gpt_prompt, gpt_info):
     # Prints the forecast(if activated in CLI args)
     print_forecast(arguments, forecast)
     # Checks if GPT in args, prints GPT response if True
+    gpt_response = None
     if arguments["gpt"] == 1:
         gpt_response = print_gpt(data_dict, gpt_prompt, gpt_info)
         print(gpt_response)
+    return gpt_response
 
 
 def set_location(location):
@@ -255,9 +257,9 @@ def forecast_to_json(data, decimal):
     for i in range(len(dates)):
         forecast = {
             "date": str(dates[i].date()),
-            "surf height": round(float(surf_height[i]), decimal),
-            "swell direction": round(float(swell_direction[i]), decimal),
-            "swell period": round(float(swell_period[i]), decimal),
+            "height": round(float(surf_height[i]), decimal),
+            "direction": round(float(swell_direction[i]), decimal),
+            "period": round(float(swell_period[i]), decimal),
         }
         forecasts.append(forecast)
 
